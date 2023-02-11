@@ -32,12 +32,9 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public Optional<User> updateUserById (@PathVariable String id, @RequestBody User user){
-        Optional<User> userOptList = userRepo.findById(id);
-        if(userOptList.isEmpty()){
-            return userOptList;
-        }
-        return Optional.of(userRepo.save(user));
+    public User editUser (@PathVariable String id, @RequestBody User user){
+       user.setId(id);
+       return userRepo.save(user);
     }
 
     @DeleteMapping("/{id}")
